@@ -22,8 +22,8 @@ export default class Slide {
       target.style.marginTop = 0
       target.style.marginBottom = 0
 
-      return Timer.start(() => { }, duration, target)
-         .then(target => {
+      return Timer.start(() => { }, duration)
+         .then(() => {
             target.style.display = 'none'
             target.setAttribute('aria-hidden', true)
             target.style.removeProperty('height')
@@ -67,8 +67,8 @@ export default class Slide {
       target.style.removeProperty('margin-top')
       target.style.removeProperty('margin-bottom')
 
-      return Timer.start(() => { }, duration, target)
-         .then(target => {
+      return Timer.start(() => { }, duration)
+         .then(() => {
             target.style.removeProperty('height');
             target.style.removeProperty('overflow');
             target.style.removeProperty('transition-duration');
