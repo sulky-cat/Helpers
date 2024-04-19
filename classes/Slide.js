@@ -6,7 +6,7 @@ export default class Slide {
     * @param   {number} duration       Время выполнения.
     * @returns {(false|Promise)}     false - если анимация запрещена в данный момент; Promise - после удачного выполнения.
     */
-   static close(target, duration = 500) {
+   static async close(target, duration = 500) {
       if (target.classList.contains('_slide'))
          return
 
@@ -22,21 +22,21 @@ export default class Slide {
       target.style.marginTop = 0
       target.style.marginBottom = 0
 
-      return Timer.start(() => { }, duration)
-         .then(() => {
-            target.style.display = 'none'
-            target.setAttribute('aria-hidden', true)
-            target.style.removeProperty('height')
-            target.style.removeProperty('padding-top')
-            target.style.removeProperty('padding-bottom')
-            target.style.removeProperty('margin-top')
-            target.style.removeProperty('margin-bottom')
-            target.style.removeProperty('overflow')
-            target.style.removeProperty('transition-duration')
-            target.style.removeProperty('transition-property')
-            target.classList.remove('_slide')
-            return target
-         })
+      await Timer.start(() => { }, duration)
+      
+      target.style.display = 'none'
+      target.setAttribute('aria-hidden', true)
+      target.style.removeProperty('height')
+      target.style.removeProperty('padding-top')
+      target.style.removeProperty('padding-bottom')
+      target.style.removeProperty('margin-top')
+      target.style.removeProperty('margin-bottom')
+      target.style.removeProperty('overflow')
+      target.style.removeProperty('transition-duration')
+      target.style.removeProperty('transition-property')
+      target.classList.remove('_slide')
+      return target
+
    }
    /**
     * Открытие элемента.
@@ -44,7 +44,7 @@ export default class Slide {
     * @param   {number} duration      Время выполнения.
     * @returns {(false|Promise)}    false - если анимация запрещена в данный момент; Promise - после удачного выполнения.
     */
-   static open(target, duration = 500) {
+   static async open(target, duration = 500) {
       if (target.classList.contains('_slide'))
          return
 
@@ -67,15 +67,14 @@ export default class Slide {
       target.style.removeProperty('margin-top')
       target.style.removeProperty('margin-bottom')
 
-      return Timer.start(() => { }, duration)
-         .then(() => {
-            target.style.removeProperty('height');
-            target.style.removeProperty('overflow');
-            target.style.removeProperty('transition-duration');
-            target.style.removeProperty('transition-property');
-            target.classList.remove('_slide');
-            return target
-         })
+      await Timer.start(() => { }, duration)
+
+      target.style.removeProperty('height');
+      target.style.removeProperty('overflow');
+      target.style.removeProperty('transition-duration');
+      target.style.removeProperty('transition-property');
+      target.classList.remove('_slide');
+      return target
    }
    /**
     * Открытие|закрытие элемента.
@@ -89,3 +88,5 @@ export default class Slide {
          this.close(target, duration)
    }
 }
+
+
