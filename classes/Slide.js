@@ -1,12 +1,13 @@
 import Timer from "./Timer.js";
 export default class Slide {
+   static #duration = 300
    /**
     * Закрытие элемента с дальнейшим присваиванием свойства display со значением none.
     * @param   {HTMLElement} target    Элемент.
     * @param   {number} duration       Время выполнения.
     * @returns {(false|Promise)}     false - если анимация запрещена в данный момент; Promise - после удачного выполнения.
     */
-   static async close(target, duration = 500) {
+   static async close(target, duration = Slide.#duration) {
       if (target.classList.contains('_slide'))
          return
 
@@ -23,7 +24,7 @@ export default class Slide {
       target.style.marginBottom = 0
 
       await Timer.start(() => { }, duration)
-      
+
       target.style.display = 'none'
       target.setAttribute('aria-hidden', true)
       target.style.removeProperty('height')
@@ -44,7 +45,7 @@ export default class Slide {
     * @param   {number} duration      Время выполнения.
     * @returns {(false|Promise)}    false - если анимация запрещена в данный момент; Promise - после удачного выполнения.
     */
-   static async open(target, duration = 500) {
+   static async open(target, duration = Slide.#duration) {
       if (target.classList.contains('_slide'))
          return
 
@@ -82,7 +83,7 @@ export default class Slide {
     * @param   {number} duration      Время выполнения.
     * @returns {(false|Promise)}    false - если анимация запрещена в данный момент; Promise - после удачного выполнения.
     */
-   static toggle(target, duration = 500) {
+   static toggle(target, duration = Slide.#duration) {
       return (JSON.parse(target.getAttribute('aria-hidden'))) ?
          this.open(target, duration) :
          this.close(target, duration)
