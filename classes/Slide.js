@@ -11,7 +11,7 @@ export default class Slide {
       if (target.classList.contains('_slide'))
          return
 
-      target.classList.add('_slide')
+      target.classList.add('_slide', '_slide-close')
       target.style.transitionProperty = 'height, margin, padding'
       target.style.transitionDuration = `${duration}ms`
       target.style.height = `${target.offsetHeight}px`
@@ -35,7 +35,7 @@ export default class Slide {
       target.style.removeProperty('overflow')
       target.style.removeProperty('transition-duration')
       target.style.removeProperty('transition-property')
-      target.classList.remove('_slide')
+      target.classList.remove('_slide', '_slide-close')
       return target
 
    }
@@ -49,7 +49,7 @@ export default class Slide {
       if (target.classList.contains('_slide'))
          return
 
-      target.classList.add('_slide')
+      target.classList.add('_slide', '_slide-open')
       target.style.removeProperty('display')
       target.setAttribute('aria-hidden', false)
       const height = target.offsetHeight
@@ -74,7 +74,7 @@ export default class Slide {
       target.style.removeProperty('overflow');
       target.style.removeProperty('transition-duration');
       target.style.removeProperty('transition-property');
-      target.classList.remove('_slide');
+      target.classList.remove('_slide', '_slide-open');
       return target
    }
    /**
@@ -89,5 +89,3 @@ export default class Slide {
          this.close(target, duration)
    }
 }
-
-
