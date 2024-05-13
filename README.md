@@ -1,5 +1,10 @@
 # Helpers
 
+## Содержание
+- [Timer](#timer)
+- [Slide](#simer)
+- [BodyLock](#bodyLock)
+
 ## Timer
 Счетчик в миллисекундах. Замена `setTimeout` с использованием `requestAnimationFrame` и объекта `Date`.
 Использует статичный метод.
